@@ -1,21 +1,21 @@
 {
   "mcpServers": {
-    "spectra-mcp": {
+    "contractiq-mcp": {
       "command": "python",
-      "args": ["mcp_server/spectra_mcp_server.py"],
-      "description": "SPECTRA MCP Server - AI-powered test generation, spec analysis, and requirements processing",
+      "args": ["mcp_server/contractiq_mcp_server.py"],
+      "description": "ContractIQ MCP Server - AI-powered test generation, spec analysis, and requirements processing",
       "env": {
-        "SPECTRA_MCP_PORT": "8765",
-        "SPECTRA_LOG_LEVEL": "INFO"
+        "CONTRACTIQ_MCP_PORT": "8765",
+        "CONTRACTIQ_LOG_LEVEL": "INFO"
       }
     },
     "memory-keeper": {
       "command": "python",
       "args": ["mcp_server/memory_keeper.py"],
-      "description": "SPECTRA Memory Keeper - Cross-session context persistence, knowledge base, and semantic search",
+      "description": "ContractIQ Memory Keeper - Cross-session context persistence, knowledge base, and semantic search",
       "env": {
-        "MEMORY_DB_PATH": ".spectra/memory.db",
-        "MEMORY_VECTOR_PATH": ".spectra/vectors"
+        "MEMORY_DB_PATH": ".contractiq/memory.db",
+        "MEMORY_VECTOR_PATH": ".contractiq/vectors"
       }
     },
     "playwright-mcp": {
@@ -29,9 +29,9 @@
     }
   },
   "globalSettings": {
-    "project": "spectra-agentic-qe",
+    "project": "contractiq-agentic-qe",
     "version": "1.0.0",
-    "aiModel": "claude-sonnet-4-5",
+    "aiModel": "claude-3-5-sonnet-latest",
     "contextWindow": 200000,
     "maxTokensPerRequest": 8192
   }
