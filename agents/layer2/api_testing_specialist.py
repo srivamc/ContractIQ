@@ -1,4 +1,4 @@
-"""SPECTRA API Testing Specialist - Layer 2
+"""ContractIQ API Testing Specialist - Layer 2
 
 Domain specialist for REST/SOAP/GraphQL/gRPC API testing.
 """
