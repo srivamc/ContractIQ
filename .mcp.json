@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "spectra-mcp": {
+      "command": "python",
+      "args": ["mcp_server/spectra_mcp_server.py"],
+      "description": "SPECTRA MCP Server - AI-powered test generation, spec analysis, and requirements processing",
+      "env": {
+        "SPECTRA_MCP_PORT": "8765",
+        "SPECTRA_LOG_LEVEL": "INFO"
+      }
+    },
+    "memory-keeper": {
+      "command": "python",
+      "args": ["mcp_server/memory_keeper.py"],
+      "description": "SPECTRA Memory Keeper - Cross-session context persistence, knowledge base, and semantic search",
+      "env": {
+        "MEMORY_DB_PATH": ".spectra/memory.db",
+        "MEMORY_VECTOR_PATH": ".spectra/vectors"
+      }
+    },
+    "playwright-mcp": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "description": "Playwright MCP Server - Browser automation for UI testing and self-healing locator repair",
+      "env": {
+        "PLAYWRIGHT_HEADLESS": "true",
+        "PLAYWRIGHT_BROWSER": "chromium"
+      }
+    }
+  },
+  "globalSettings": {
+    "project": "spectra-agentic-qe",
+    "version": "1.0.0",
+    "aiModel": "claude-sonnet-4-5",
+    "contextWindow": 200000,
+    "maxTokensPerRequest": 8192
+  }
+}
