@@ -1,4 +1,4 @@
-"""SPECTRA Test Data Generator Agent - Layer 1
+"""ContractIQ Test Data Generator Agent - Layer 1
 
 Generates contextual, domain-aware test data for API and UI tests.
 Supports data generation from specs, schemas, and AI-based realistic data.
