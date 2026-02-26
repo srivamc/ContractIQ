@@ -1,9 +1,8 @@
 """
-SPECTRA Spec Parser
+ContractIQ Spec Parser
 Universal specification parser supporting multiple spec formats.
 Supports: OpenAPI 3.x, Swagger 2.0, Postman Collection v2.1, AsyncAPI, GraphQL, Playwright HAR
 """
-
 from __future__ import annotations
 import json
 import yaml
@@ -12,7 +11,7 @@ from pathlib import Path
 from enum import Enum
 from loguru import logger
 
-from core.context_manager import SPECTRAContext
+from core.context_manager import ContractIQContext
 
 
 class SpecType(str, Enum):
@@ -27,7 +26,7 @@ class SpecType(str, Enum):
     UNKNOWN = "unknown"
 
 
-class SpecParser:
+class ContractIQSpecParser:
     """
     Universal spec parser that auto-detects format and extracts:
     - API endpoints with methods, paths, parameters, request/response schemas
@@ -36,7 +35,7 @@ class SpecParser:
     - UI component trees (from Playwright traces/HAR)
     """
 
-    def __init__(self, context: SPECTRAContext) -> None:
+    def __init__(self, context: ContractIQContext) -> None:
         self.context = context
         self.raw_spec: Optional[Dict] = None
         self.spec_type: SpecType = SpecType.UNKNOWN
@@ -57,7 +56,6 @@ class SpecParser:
         # Detect format
         self.spec_type = self._detect_spec_type(spec_path, self.raw_spec)
         self.context.spec_type = self.spec_type.value
-
         logger.info(f"Detected spec type: {self.spec_type.value}")
 
         # Parse based on type
@@ -96,13 +94,10 @@ class SpecParser:
             "schemas_found": len(self.context.schemas),
             "auth_flows_found": len(self.context.auth_flows),
         }
-
         if not self.context.endpoints:
             report["warnings"].append("No endpoints found in spec")
-
         if not self.context.schemas:
             report["warnings"].append("No schemas found in spec")
-
         return report
 
     def _load_spec(self, path: Path) -> Dict[str, Any]:
@@ -175,7 +170,6 @@ class SpecParser:
                 operation = path_item.get(method)
                 if not operation:
                     continue
-
                 endpoint = {
                     "path": path,
                     "method": method.upper(),
@@ -216,8 +210,7 @@ class SpecParser:
     def _extract_postman_items(self, items: List, parent_tag: str = "") -> None:
         """Recursively extract Postman requests."""
         for item in items:
-            if "item" in item:
-                # Folder - recurse
+            if "item" in item:  # Folder - recurse
                 self._extract_postman_items(item["item"], item.get("name", parent_tag))
             elif "request" in item:
                 req = item["request"]
@@ -260,7 +253,6 @@ class SpecParser:
         schema = self.raw_spec.get("data", self.raw_spec).get("__schema", {})
         query_type = schema.get("queryType", {}).get("name")
         mutation_type = schema.get("mutationType", {}).get("name")
-
         types = {t["name"]: t for t in schema.get("types", []) if not t["name"].startswith("__")}
 
         for operation_type, type_name in [("query", query_type), ("mutation", mutation_type)]:
