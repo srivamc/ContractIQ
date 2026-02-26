@@ -1,9 +1,8 @@
 """
-SPECTRA Orchestrator
+ContractIQ Orchestrator
 Main workflow controller for the 3-layer agentic pipeline.
 Coordinates all agents from spec analysis through execution and reporting.
 """
-
 from __future__ import annotations
 import asyncio
 from typing import Any, Dict, List, Optional
@@ -13,21 +12,20 @@ from rich.panel import Panel
 from rich.table import Table
 from loguru import logger
 
-from core.context_manager import SPECTRAContext
+from core.context_manager import ContractIQContext
 
 console = Console()
 
-
-class SPECTRAOrchestrator:
+class ContractIQOrchestrator:
     """
-    Main SPECTRA pipeline orchestrator.
+    Main ContractIQ pipeline orchestrator.
     Executes the 3-layer agent workflow:
-      Layer 0: Knowledge creation (SpecAnalyzerAgent)
-      Layer 1: Core orchestration (9 sequential agents)
-      Layer 2: Domain specialists (8 parallel agents)
+        Layer 0: Knowledge creation (SpecAnalyzerAgent)
+        Layer 1: Core orchestration (9 sequential agents)
+        Layer 2: Domain specialists (8 parallel agents)
     """
 
-    def __init__(self, context: SPECTRAContext) -> None:
+    def __init__(self, context: ContractIQContext) -> None:
         self.context = context
         self._phase_handlers = {
             "api": self._run_api_pipeline,
@@ -40,10 +38,10 @@ class SPECTRAOrchestrator:
 
     async def run(self) -> int:
         """
-        Execute the SPECTRA workflow for the configured mode.
+        Execute the ContractIQ workflow for the configured mode.
         Returns exit code: 0 = success, 1 = failure, 2 = partial failure.
         """
-        logger.info(f"Starting SPECTRA orchestrator | session={self.context.session_id} | mode={self.context.mode}")
+        logger.info(f"Starting ContractIQ orchestrator | session={self.context.session_id} | mode={self.context.mode}")
 
         handler = self._phase_handlers.get(self.context.mode)
         if not handler:
@@ -157,10 +155,10 @@ class SPECTRAOrchestrator:
                 task = progress.add_task(f"[cyan]{step_name}[/cyan]", total=None)
                 try:
                     await step_func()
-                    progress.update(task, description=f"[green]✓ {step_name}[/green]")
+                    progress.update(task, description=f"[green]\u2713 {step_name}[/green]")
                     self.context.mark_phase_complete(step_name)
                 except Exception as e:
-                    progress.update(task, description=f"[red]✗ {step_name}: {e}[/red]")
+                    progress.update(task, description=f"[red]\u2717 {step_name}: {e}[/red]")
                     self.context.add_error(step_name, str(e))
                     logger.error(f"Step failed: {step_name} - {e}")
                     if self._is_critical_step(step_name):
@@ -226,28 +224,22 @@ class SPECTRAOrchestrator:
     async def _run_api_specialists(self) -> None:
         """Run API-relevant Layer 2 specialists in parallel."""
         from agents.layer2.api_testing_specialist import APITestingSpecialist
-        from agents.layer2.auth_specialist import AuthSpecialist
-        from agents.layer2.schema_validator_specialist import SchemaValidatorSpecialist
-        from agents.layer2.security_scanner_specialist import SecurityScannerSpecialist
-        from agents.layer2.contract_tester_specialist import ContractTesterSpecialist
-
+        from agents.layer2.security_testing_specialist import SecurityTestingSpecialist
+        from agents.layer2.performance_testing_specialist import PerformanceTestingSpecialist
+        from agents.layer2.code_review_specialist import CodeReviewSpecialist
         specialists = [
             APITestingSpecialist(self.context),
-            AuthSpecialist(self.context),
-            SchemaValidatorSpecialist(self.context),
-            SecurityScannerSpecialist(self.context),
-            ContractTesterSpecialist(self.context),
+            SecurityTestingSpecialist(self.context),
+            PerformanceTestingSpecialist(self.context),
+            CodeReviewSpecialist(self.context),
         ]
         await asyncio.gather(*[s.run() for s in specialists], return_exceptions=True)
 
     async def _run_ui_specialists(self) -> None:
         """Run UI-relevant Layer 2 specialists in parallel."""
-        from agents.layer2.ui_testing_specialist import UITestingSpecialist
-        from agents.layer2.accessibility_checker_specialist import AccessibilityCheckerSpecialist
-
+        from agents.layer2.api_testing_specialist import APITestingSpecialist
         specialists = [
-            UITestingSpecialist(self.context),
-            AccessibilityCheckerSpecialist(self.context),
+            APITestingSpecialist(self.context),
         ]
         await asyncio.gather(*[s.run() for s in specialists], return_exceptions=True)
 
@@ -267,8 +259,8 @@ class SPECTRAOrchestrator:
 
     async def _run_reporting(self) -> None:
         """Generate test reports."""
-        from core.reporter import SPECTRAReporter
-        reporter = SPECTRAReporter(self.context)
+        from core.reporter import ContractIQReporter
+        reporter = ContractIQReporter(self.context.output_dir)
         await reporter.generate()
 
     # -------------------------------------------------------------------------
@@ -278,7 +270,7 @@ class SPECTRAOrchestrator:
     def _print_summary(self, exit_code: int) -> None:
         """Print execution summary to console."""
         summary = self.context.get_summary()
-        table = Table(title="SPECTRA Execution Summary", show_header=True, header_style="bold cyan")
+        table = Table(title="ContractIQ Execution Summary", show_header=True, header_style="bold cyan")
         table.add_column("Metric", style="dim", width=30)
         table.add_column("Value", justify="right")
 
@@ -294,5 +286,4 @@ class SPECTRAOrchestrator:
 
         status_map = {0: "[bold green]SUCCESS[/bold green]", 1: "[bold red]FAILED[/bold red]", 2: "[bold yellow]PARTIAL[/bold yellow]"}
         table.add_row("Exit Status", status_map.get(exit_code, str(exit_code)))
-
         console.print(table)
