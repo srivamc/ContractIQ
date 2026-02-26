@@ -1,4 +1,4 @@
-"""SPECTRA Optimization Agent - Layer 1
+"""ContractIQ Optimization Agent - Layer 1
 
 Intelligent test suite optimization for faster execution and better coverage.
 """
