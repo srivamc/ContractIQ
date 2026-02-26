@@ -1,4 +1,4 @@
-"""SPECTRA Analysis Agent - Layer 1
+"""ContractIQ Analysis Agent - Layer 1
 
 Coverage analysis and AI-powered insights from test execution results.
 """
