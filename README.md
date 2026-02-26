@@ -22,6 +22,13 @@ Unlike traditional test automation tools tied to a proprietary platform, SPECTRA
 
 ---
 
+## Why SPECTRA? (Our Startup Edge)
+
+While many frameworks offer "AI-assisted" testing, SPECTRA is the first **Infrastructure-Aware Agentic QE Framework**. Our USP is centered on three pillars:
+
+1.  **Full-Stack Observation:** We don't just look at the UI. Our Layer 2 agents analyze infrastructure logs and network security layers (East-West/North-South) via the Model Context Protocol (MCP).
+2.  **Spec-Driven Truth:** We enforce strict contract validation. If the application code deviates from the specification, it's a contract failure, preventing AI-generated "hallucinated features."
+3.  **Predictive Healing:** When a test breaks, SPECTRA doesn't just fix the selector—it identifies the architectural flaw and suggests a code refactor via a Pull Request.
 ## Architecture: 3-Layer Agentic System
 
 ```
