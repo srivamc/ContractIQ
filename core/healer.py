@@ -1,9 +1,8 @@
 """
-SPECTRA Self-Healing Framework
+ContractIQ Self-Healing Framework
 Automatically repairs broken tests using AI-powered analysis.
 80%+ success rate for selector and endpoint changes.
 """
-
 from __future__ import annotations
 
 import asyncio
@@ -13,7 +12,7 @@ from typing import Any, Dict, List, Optional
 from enum import Enum
 from loguru import logger
 
-from core.context_manager import SPECTRAContext
+from core.context_manager import ContractIQContext
 from core.test_runner import TestCase, TestStatus
 
 
@@ -50,10 +49,10 @@ class HealingResult:
     reason: str = ""
 
 
-class SPECTRAHealer:
+class ContractIQHealer:
     """AI-powered self-healing for broken tests."""
 
-    def __init__(self, context: SPECTRAContext):
+    def __init__(self, context: ContractIQContext):
         self.context = context
         self._healing_history: Dict[str, List[HealingAttempt]] = {}
         self._selector_cache: Dict[str, str] = {}
@@ -61,7 +60,6 @@ class SPECTRAHealer:
     async def heal_test(self, tc: TestCase) -> HealingResult:
         """Attempt to heal a failed test case."""
         logger.info(f"Healing test {tc.id}: {tc.name}")
-
         result = HealingResult(
             test_id=tc.id,
             original_status=tc.status
@@ -69,7 +67,6 @@ class SPECTRAHealer:
 
         # Try different healing strategies
         strategies = self._select_strategies(tc)
-
         for strategy in strategies:
             attempt = await self._apply_strategy(tc, strategy)
             result.attempts.append(attempt)
@@ -93,7 +90,6 @@ class SPECTRAHealer:
     def _select_strategies(self, tc: TestCase) -> List[HealingStrategy]:
         """Select appropriate healing strategies based on failure type."""
         strategies = []
-
         if tc.error:
             error_lower = tc.error.lower()
 
@@ -117,16 +113,15 @@ class SPECTRAHealer:
             if "timeout" in error_lower or "timed out" in error_lower:
                 strategies.append(HealingStrategy.TIMEOUT_ADJUST)
 
-        # Fallback: try retry logic
-        if not strategies:
-            strategies.append(HealingStrategy.RETRY_LOGIC)
+            # Fallback: try retry logic
+            if not strategies:
+                strategies.append(HealingStrategy.RETRY_LOGIC)
 
         return strategies
 
     async def _apply_strategy(self, tc: TestCase, strategy: HealingStrategy) -> HealingAttempt:
         """Apply a specific healing strategy."""
         import time
-
         attempt = HealingAttempt(
             strategy=strategy,
             original_value="",
@@ -158,17 +153,14 @@ class SPECTRAHealer:
     async def _heal_selector(self, tc: TestCase, attempt: HealingAttempt) -> None:
         """Heal broken UI selectors using AI-powered element matching."""
         from playwright.async_api import async_playwright
-
         if not tc.ui_steps:
             return
 
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
             page = await browser.new_page()
-
             try:
                 await page.goto(self.context.target_url or "")
-
                 for step in tc.ui_steps:
                     if step.get("action") in ["click", "fill", "assert_text", "assert_visible"]:
                         original_selector = step.get("selector", "")
@@ -176,14 +168,12 @@ class SPECTRAHealer:
 
                         # Try to find element by similar attributes
                         healed_selector = await self._find_similar_element(page, original_selector)
-
                         if healed_selector:
                             step["selector"] = healed_selector
                             attempt.healed_value = healed_selector
                             attempt.confidence = 0.85
                             attempt.success = True
                             logger.debug(f"Healed selector: {original_selector} -> {healed_selector}")
-
             finally:
                 await browser.close()
 
@@ -192,7 +182,7 @@ class SPECTRAHealer:
         # Extract meaningful parts of selector
         if "[" in original_selector:
             # Try data attributes
-            match = re.search(r'\[([^=]+)=["\']([^"\']*)["\']]', original_selector)
+            match = re.search(r'\[([^=]+)=["\']([^"\']*)["\']\]', original_selector)
             if match:
                 attr, value = match.groups()
                 candidates = await page.query_selector_all(f"[{attr}*='{value[:10]}']")  # partial match
@@ -200,7 +190,7 @@ class SPECTRAHealer:
                     return f"[{attr}*='{value[:10]}']"
 
         # Try text content
-        text_match = re.search(r'text=["\']([^"\']*)["\']]', original_selector)
+        text_match = re.search(r'text=["\']([^"\']*)["\']', original_selector)
         if text_match:
             text = text_match.group(1)
             return f'text="{text}"'
@@ -232,7 +222,6 @@ class SPECTRAHealer:
             for transform in transformations:
                 new_endpoint = transform(tc.endpoint)
                 url = f"{self.context.target_url}{new_endpoint}"
-
                 try:
                     response = await client.get(url)
                     if response.status_code < 500:
@@ -253,7 +242,6 @@ class SPECTRAHealer:
         # Fetch actual response and use it as new schema baseline
         import httpx
         url = f"{self.context.target_url}{tc.endpoint}"
-
         async with httpx.AsyncClient(timeout=tc.timeout) as client:
             response = await client.request(
                 method=tc.method or "GET",
@@ -261,7 +249,6 @@ class SPECTRAHealer:
                 params=tc.params,
                 headers=tc.headers
             )
-
             if response.status_code == tc.expected_status:
                 # Update schema to match actual response
                 tc.expected_schema = self._generate_schema(response.json())
@@ -321,14 +308,14 @@ class SPECTRAHealer:
             1 for attempts in self._healing_history.values()
             for attempt in attempts if attempt.success
         )
-
         return {
             "total_tests_healed": len(self._healing_history),
             "total_attempts": total_attempts,
             "successful_heals": successful,
             "success_rate": (successful / total_attempts * 100) if total_attempts > 0 else 0.0,
             "strategies_used": list(set(
-                attempt.strategy for attempts in self._healing_history.values()
+                attempt.strategy
+                for attempts in self._healing_history.values()
                 for attempt in attempts
             ))
         }
