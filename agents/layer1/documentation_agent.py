@@ -1,4 +1,4 @@
-"""SPECTRA Documentation Agent - Layer 1
+"""ContractIQ Documentation Agent - Layer 1
 
 Auto-generates living documentation and coverage reports.
 """
