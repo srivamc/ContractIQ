@@ -1,61 +1,30 @@
-# ContractIQ Product Roadmap: Path to Best-in-Class Agentic QE
+# ContractIQ Roadmap
 
-> **Vision:** Become the definitive Agentic QE platform that solves what no other tool has — autonomous, spec-native, cross-domain quality assurance with provable correctness, zero-manual-maintenance, and enterprise-grade governance.
+## 2025: The Year of Autonomous Quality
 
----
+### Q1 2025: Foundation & Intellectual Property (Current)
+- ✅ **Rebranding**: Successfully transitioned from SPECTRA to **ContractIQ**.
+- ✅ **Patent Strategy**: Filed provisional patent for Hierarchical Multi-Agent Architecture.
+- ✅ **Core Agents**: Implemented Layer 1 Orchestrator and Layer 2 Specialists (API, Security, Performance, Accessibility, Code Review).
+- 🔄 **Refinement**: Optimizing agent communication protocols and context preservation.
 
-## Strategic Context: What the Industry Has NOT Solved
+### Q2 2025: Advanced Intelligence & Scaling
+- **Self-Healing 2.0**: Implementing deep reinforcement learning for automated test suite repair.
+- **Contract Drift Prediction**: Launching ML-based predictive analysis for API schema changes.
+- **MCP Ecosystem Expansion**: Developing more Model Context Protocol (MCP) servers for broader tool integration.
+- **Community Launch**: Opening the repository for early adopters and beta testers.
 
-After analyzing 50+ frameworks (CrewAI, AutoGen, LangGraph, LangChain, Mabl, Testim, Applitools, Katalon, EPAM Agentic QA, Virtuoso, Diffblue, StackHawk), these critical gaps remain **unsolved**:
+### Q3 2025: Enterprise Integration & Ecosystem
+- **Cloud-Native Connectors**: Deep integration with AWS, Azure, and Google Cloud environments.
+- **Service Mesh Introspection**: Autonomous discovery and validation for Istio and Linkerd mesh architectures.
+- **Impact Analysis Dashboard**: Real-time visualization of the "blast radius" for contract changes.
+- **Plugin Marketplace**: Allowing third-party developers to contribute specialized testing agents.
 
-1. **Spec-native test ownership** — No framework treats the OpenAPI/AsyncAPI spec as the *living* source of truth that auto-regenerates tests when specs drift
-2. **Cross-domain swarm intelligence** — No tool coordinates Security + Performance + Functional agents in real-time consensus without human orchestration
-3. **Compliance-as-Code in QE** — No platform natively embeds SOC2/HIPAA/PCI-DSS validation into the test execution pipeline
-4. **Zero-maintenance self-healing with root cause** — Existing self-healing fixes selectors blindly; none provides WHY the UI changed and links to code commits
-5. **Autonomous test debt quantification** — No tool measures and reports the business cost of untested code paths in dollar terms
-6. **MCP-native context propagation** — No framework uses Model Context Protocol for stateful, memory-persistent agent collaboration across sessions
-
-**ContractIQ is built to solve all six.**
-
----
-
-## Phase 1: Foundation — *Current (Q1 2026)*
-
-### Status: COMPLETE
-
-| Capability | Status | Description |
-|---|---|---|
-| 3-Layer Agent Architecture | Complete | Foundation (L1) + Strategic (L2) + Specialist (L3) |
-| Spec-Driven Core | Complete | OpenAPI, AsyncAPI, and YAML spec ingestion |
-| MCP Server Integration | Complete | Context-aware agent memory via MCP protocol |
-| API Testing Agent | Complete | Autonomous REST/GraphQL test generation |
-| Security Testing Agent | Complete | OWASP-aligned vulnerability scanning |
-| Performance Testing Agent | Complete | Latency, throughput, and SLA validation |
-| Self-Healing Agent | Complete | Selector recovery with confidence scoring |
-| Analysis Agent | Complete | Root cause analysis and intelligent reporting |
-| CI/CD Bridge | Complete | GitHub Actions, Jenkins, GitLab CI integration |
-
-### Core USP Established:
-- **Spec-as-Contract:** ContractIQ treats OpenAPI specs as binding contracts, not documentation
-- **MCP-First Architecture:** Agent memory persists across sessions via Model Context Protocol
-- **Zero-Config Start:** Point ContractIQ at any OpenAPI URL and it generates, runs, and reports — no human test writing
+### Q4 2025: Full Autonomy & Industry Leadership
+- **Zero-Touch QE**: Fully autonomous quality engineering from PR to Production.
+- **Standardization**: Proposing ContractIQ protocols as industry standards for agentic testing.
+- **Global Expansion**: Localized support and compliance for international markets.
+- **Patent Grant Strategy**: Transitioning provisional patents to international PCT filings.
 
 ---
-
-## Phase 2: Autonomous Intelligence — Q2 2026
-
-### Theme: "From Automation to Autonomy"
-
-#### 2.1 Zero-Touch Discovery Engine
-- **Spec Crawler:** Point at any GitHub repo, running service, or API gateway — ContractIQ auto-discovers all endpoints, infers schemas, generates OpenAPI specs, and creates full test suites without any human input
-- **Shadow API Detection:** Identify undocumented endpoints in traffic logs that are not in the spec.
-- **Semantic Drift Alerts:** When production API behavior deviates from spec, ContractIQ raises a drift incident.
-
-#### 2.2 Multi-Domain Consensus Testing (Industry First)
-- **Swarm Validation Protocol:** Security Agent, Performance Agent, and Functional Agent run concurrently and reach consensus on test verdicts.
-- **Cross-Agent Memory:** Shared MCP context ensures findings are propagated.
-
----
-
-## Strategic Roadmap Continue...
-(Remaining phases follow the same rebranding logic)
+*Roadmap subject to change as the agentic AI landscape evolves.*
