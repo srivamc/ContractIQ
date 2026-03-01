@@ -1,12 +1,11 @@
-
-[![Patent Pending](https://img.shields.io/badge/Patent-Pending-orange.svg)](PATENT_JUSTIFICATION.md)
+[![Patent Pending](https://img.shields.io/badge/Patent--Pending-orange.svg)](PATENT_JUSTIFICATION.md)
 # ContractIQ: Autonomous Contract-Driven Quality Engineering
 
 > **The "CEO of Quality" for the Modern SDLC.**
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-brightgreen.svg)](https://python.org)
-[![MCP Protocol](https://img.shields.io/badge/MCP-Enabled-purple.svg)](https://modelcontextprotocol.io)
+[![MCP Protocol](https://img.shields.io/badge/MCP--Enabled-purple.svg)](https://modelcontextprotocol.io)
 
 ---
 
@@ -18,47 +17,43 @@ Unlike traditional test automation tools tied to a proprietary platform, Contrac
 
 - **Spec-driven** – Ingests OpenAPI 3.x, Postman collections, AsyncAPI, or custom YAML specs to auto-generate tests.
 - **Platform-agnostic** – No vendor lock-in; runs on any CI/CD system (GitHub Actions, GitLab CI, Jenkins, Azure DevOps).
-- **AI-first** – Uses a 3-layer multi-agent architecture (18 specialized agents) to autonomously generate, execute, and heal tests.
+- **AI-first** – Uses a 3-layer multi-agent architecture to autonomously generate, execute, and heal tests.
 - **Dual-mode** – Covers both UI (browser via Playwright) and Backend API (REST/GraphQL/gRPC) testing from the same framework.
 - **Zero-migration** – Works alongside existing test suites; does not break existing tests.
 
-### Why ContractIQ?
+## 🚀 Revolutionary Features
 
-In an enterprise world of thousands of microservices, "testing" isn't enough. You need **Contract Intelligence**.
+ContractIQ introduces industry-first autonomous capabilities:
 
-1. **Contract-as-Truth:** Unlike generic AI testers, ContractIQ uses your API specs as the absolute source of truth.
-2. **Autonomous IQ:** It doesn't just run scripts; it reasons about contract violations, identifies infrastructure bottlenecks, and executes complex end-to-end flows.
-3. **Governance-First:** It speaks the language of leadership—reporting quality in terms of compliance, revenue-at-risk, and service-level objectives (SLOs).
-
----
+- **Generative Adversarial Quality Engineering (GA-QE)**: A "Breaker vs. Fixer" multi-agent loop that evolves attack vectors to violate contracts and proactively fixes them.
+- **Autonomous Compliance-as-Contract (ACaC)**: Translates regulatory text (GDPR, HIPAA, SOC2) into machine-testable quality contracts.
+- **Dynamic Contract Synthesis**: Observes legacy systems to synthesize missing specifications into a baseline "Inferred Truth."
+- **Shift-Right Telemetry Evolution**: Agents that re-prioritize testing strategies based on real-time production failure patterns and user behavior.
+- **Zero-Knowledge Quality Proofs (ZK-QP)**: Verify contract compliance without exposing internal application logic or source code.
 
 ## 3-Layer Agent Architecture
 
 ### Layer 0: Strategic (Management)
-- **Test Orchestrator Agent:** The "Project Manager" that assigns tasks to specialist agents.
-- **Analysis Agent:** Provides root cause analysis and executive summaries.
+- **Test Orchestrator Agent**: The "Project Manager" that assigns tasks to specialist agents.
+- **Analysis Agent**: Provides autonomous root cause analysis and executive risk reporting.
 
 ### Layer 1: Specialist (Execution)
-- **API Testing Specialist:** Autonomous REST/GraphQL validation.
-- **Security Testing Specialist:** OWASP Top 10 automated scanning during functional flows.
-- **Performance Testing Specialist:** Validates SLAs, latency, and throughput.
-- **Code Review Specialist:** Intelligent PR analysis for testability.
+- **API Testing Specialist**: Autonomous REST/GraphQL validation.
+- **Security Testing Specialist**: OWASP Top 10 automated scanning during functional flows.
+- **Performance Testing Specialist**: Validates SLAs, latency, and throughput.
+- **Code Review Specialist**: Intelligent PR analysis for testability and contract drift.
 
 ### Layer 2: Foundation (Core Skills)
-- **Spec Analyzer Agent:** Ingests and enforces the contract.
-- **Discovery Agent:** Identifies "Shadow APIs" not present in documentation.
-- **Healing Agent:** Predictive self-healing that generates code refactoring PRs.
-
----
+- **Spec Analyzer Agent**: Ingests and enforces the "Contract-as-Truth."
+- **Discovery Agent**: Identifies "Shadow APIs" not present in documentation.
+- **Healing Agent**: Predictive self-healing that generates proactive refactoring PRs.
 
 ## Model Context Protocol (MCP) Integration
 
 ContractIQ is **MCP-Native**. This allows our agents to:
-- **Persist Memory:** Context travels across test sessions.
-- **Connect Silos:** Functional agents share state with Security agents in real-time.
-- **Deep Visibility:** Agents access server logs and infra state to verify "why" a contract failed.
-
----
+- **Persist Memory**: Context travels across test sessions.
+- **Connect Silos**: Functional agents share state with Security agents in real-time.
+- **Deep Visibility**: Agents access server logs and infra state to verify "why" a contract failed.
 
 ## Getting Started
 
@@ -75,18 +70,16 @@ Create a `.mcp.json` in your project root to enable cross-session intelligence.
 python run_contractiq.py --spec https://api.yoursite.com/openapi.json
 ```
 
----
-
 ## Strategic Roadmap
-- **Phase 1 (Q1 2026):** Foundation – 3-Layer Architecture & MCP Support (Current).
-- **Phase 2 (Q2 2026):** Zero-Touch Discovery – Autonomous spec crawling and Shadow API detection.
-- **Phase 3 (Q3 2026):** IDE-Native – VS Code and IntelliJ plugins for real-time validation.
-- **Phase 4 (Q4 2026):** Enterprise Scale – Swarm orchestration for 1000+ parallel agents.
 
----
+- **Phase 1 (Q1 2025):** Foundation – 3-Layer Architecture & MCP Support (Current).
+- **Phase 2 (Q2 2025):** Zero-Touch Discovery – Autonomous spec crawling and Shadow API detection.
+- **Phase 3 (Q3 2025):** GA-QE Launch – Implementing the Adversarial Breaker-Fixer loop.
+- **Phase 4 (Q4 2025):** Enterprise Scale – Swarm orchestration for 1000+ parallel agents.
 
 ## License
+
 ContractIQ is open-source software licensed under the [Apache 2.0 License](LICENSE).
 
 ---
-*“ContractIQ: Where the Spec meets the Speed of AI.”*
+“ContractIQ: Where the Spec meets the Speed of AI.”
