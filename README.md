@@ -15,71 +15,156 @@
 
 Unlike traditional test automation tools tied to a proprietary platform, ContractIQ is:
 
-- **Spec-driven** – Ingests OpenAPI 3.x, Postman collections, AsyncAPI, or custom YAML specs to auto-generate tests.
-- **Platform-agnostic** – No vendor lock-in; runs on any CI/CD system (GitHub Actions, GitLab CI, Jenkins, Azure DevOps).
-- **AI-first** – Uses a 3-layer multi-agent architecture to autonomously generate, execute, and heal tests.
-- **Dual-mode** – Covers both UI (browser via Playwright) and Backend API (REST/GraphQL/gRPC) testing from the same framework.
-- **Zero-migration** – Works alongside existing test suites; does not break existing tests.
-
-## 🚀 Revolutionary Features
-
-ContractIQ introduces industry-first autonomous capabilities:
-
-- **Generative Adversarial Quality Engineering (GA-QE)**: A "Breaker vs. Fixer" multi-agent loop that evolves attack vectors to violate contracts and proactively fixes them.
-- **Autonomous Compliance-as-Contract (ACaC)**: Translates regulatory text (GDPR, HIPAA, SOC2) into machine-testable quality contracts.
-- **Dynamic Contract Synthesis**: Observes legacy systems to synthesize missing specifications into a baseline "Inferred Truth."
-- **Shift-Right Telemetry Evolution**: Agents that re-prioritize testing strategies based on real-time production failure patterns and user behavior.
-- **Zero-Knowledge Quality Proofs (ZK-QP)**: Verify contract compliance without exposing internal application logic or source code.
-
-## 3-Layer Agent Architecture
-
-### Layer 0: Strategic (Management)
-- **Test Orchestrator Agent**: The "Project Manager" that assigns tasks to specialist agents.
-- **Analysis Agent**: Provides autonomous root cause analysis and executive risk reporting.
-
-### Layer 1: Specialist (Execution)
-- **API Testing Specialist**: Autonomous REST/GraphQL validation.
-- **Security Testing Specialist**: OWASP Top 10 automated scanning during functional flows.
-- **Performance Testing Specialist**: Validates SLAs, latency, and throughput.
-- **Code Review Specialist**: Intelligent PR analysis for testability and contract drift.
-
-### Layer 2: Foundation (Core Skills)
-- **Spec Analyzer Agent**: Ingests and enforces the "Contract-as-Truth."
-- **Discovery Agent**: Identifies "Shadow APIs" not present in documentation.
-- **Healing Agent**: Predictive self-healing that generates proactive refactoring PRs.
-
-## Model Context Protocol (MCP) Integration
-
-ContractIQ is **MCP-Native**. This allows our agents to:
-- **Persist Memory**: Context travels across test sessions.
-- **Connect Silos**: Functional agents share state with Security agents in real-time.
-- **Deep Visibility**: Agents access server logs and infra state to verify "why" a contract failed.
-
-## Getting Started
-
-### 1. Installation
-```bash
-pip install contractiq
-```
-
-### 2. Configure MCP
-Create a `.mcp.json` in your project root to enable cross-session intelligence.
-
-### 3. Run Your First Validation
-```bash
-python run_contractiq.py --spec https://api.yoursite.com/openapi.json
-```
-
-## Strategic Roadmap
-
-- **Phase 1 (Q1 2025):** Foundation – 3-Layer Architecture & MCP Support (Current).
-- **Phase 2 (Q2 2025):** Zero-Touch Discovery – Autonomous spec crawling and Shadow API detection.
-- **Phase 3 (Q3 2025):** GA-QE Launch – Implementing the Adversarial Breaker-Fixer loop.
-- **Phase 4 (Q4 2025):** Enterprise Scale – Swarm orchestration for 1000+ parallel agents.
-
-## License
-
-ContractIQ is open-source software licensed under the [Apache 2.0 License](LICENSE).
+- **Spec-driven** - Ingests OpenAPI 3.x, Postman collections, AsyncAPI, or custom YAML specs to auto-generate tests.
+- **Platform-agnostic** - No vendor lock-in; runs on any CI/CD system (GitHub Actions, GitLab CI, Jenkins, Azure DevOps).
+- **AI-first** - Uses a 3-layer multi-agent architecture to autonomously generate, execute, and heal tests.
+- **Dual-mode** - Covers both UI (browser via Playwright) and Backend API (REST/GraphQL/gRPC) testing from the same framework.
+- **Pluggable by design** - Every major capability is a feature flag. Turn on only what you need.
 
 ---
-“ContractIQ: Where the Spec meets the Speed of AI.”
+
+## Core Capabilities
+
+| Feature | Description |
+|---|---|
+| GA-QE | Generative AI Quality Engineering - auto-generates test cases from specs |
+| ACaC | Agent-as-a-Client - AI agent acts as API consumer to catch drift |
+| MASAM | Multi-Agent Self-Adaptive Mesh - agents collaborate and self-heal |
+| ZK-QP | Zero-Knowledge Quality Proofs - cryptographic test integrity attestation |
+| RASUI | Risk-Adaptive Smart UI - dynamic risk scoring for UI test prioritization |
+| Immutable Ledger | Optional blockchain-backed quality audit trail (flag-controlled) |
+
+---
+
+## Feature Flags (Pluggable Architecture)
+
+ContractIQ uses a **flag-first design** - every feature module can be toggled independently via environment variables or `core/config.yaml`.
+
+### Configuration File: `core/config.yaml`
+
+```yaml
+feature_flags:
+  agent_swarm: true              # Multi-agent parallel execution
+  adversarial_qe: true           # Adversarial/chaos testing agents
+  zk_proofs: true                # Zero-Knowledge cryptographic quality proofs
+  compliance_acac: true          # ACaC contract drift compliance checks
+  synthetic_data: true           # Synthetic data generation for tests
+  immutable_ledger: false        # Blockchain ledger (opt-in, production-grade)
+  rasui_risk_scoring: true       # RASUI dynamic risk-based UI prioritization
+  self_healing: true             # Auto-heal broken selectors and test flows
+  mcp_gateway: true              # MCP protocol agent communication
+```
+
+### Environment Variable Overrides
+
+All flags can be overridden at runtime via environment variables:
+
+```bash
+# Enable blockchain ledger
+export CIQ_IMMUTABLE_LEDGER=true
+
+# Disable adversarial testing
+export CIQ_ADVERSARIAL_QE=false
+
+# Enable/disable full agent swarm
+export CIQ_AGENT_SWARM=true
+```
+
+### Flag Groups
+
+| Group | Flags | Purpose |
+|---|---|---|
+| **Core QE** | agent_swarm, synthetic_data, self_healing | Base quality engineering |
+| **AI/Crypto** | zk_proofs, adversarial_qe | Advanced AI + cryptographic integrity |
+| **Compliance** | compliance_acac, mcp_gateway | Contract compliance + protocol |
+| **Optional/Enterprise** | immutable_ledger, rasui_risk_scoring | Enterprise add-ons |
+
+> **Blockchain Note**: `immutable_ledger` is **OFF by default**. Set `CIQ_IMMUTABLE_LEDGER=true` to activate the immutable blockchain-backed quality audit trail. This provides tamper-proof, append-only evidence for regulated industries (finance, healthcare, defense).
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    ContractIQ Framework                      │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 3: Orchestration Agent (MCP Gateway)                  │
+│    ├── Intent Parser (NLP → Test Plan)                       │
+│    ├── Agent Dispatcher (MASAM mesh)                         │
+│    └── Quality Ledger Writer (ZK-QP + optional Blockchain)   │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 2: Specialist Agents                                  │
+│    ├── Contract Drift Agent (ACaC)                           │
+│    ├── Adversarial Agent (chaos + mutation testing)          │
+│    ├── RASUI Risk Scoring Agent (UI prioritization)          │
+│    └── Synthetic Data Agent (privacy-safe test data)         │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 1: Execution Agents                                   │
+│    ├── Playwright UI Executor                                │
+│    ├── REST/GraphQL API Executor                             │
+│    └── Self-Healing Selector Agent                           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/srivamc/ContractIQ.git
+cd ContractIQ
+pip install -r requirements.txt
+
+# Run with default flags (blockchain OFF)
+python demo/app.py
+
+# Run with blockchain ledger ON
+CIQ_IMMUTABLE_LEDGER=true python demo/app.py
+
+# Run unit tests
+pytest tests/ -v
+```
+
+---
+
+## Demo Endpoints
+
+Once running at `http://localhost:8000`:
+
+| Endpoint | Description |
+|---|---|
+| `GET /health` | Health check |
+| `GET /users` | List synthetic users |
+| `POST /users` | Create user (contract validated) |
+| `GET /orders` | List synthetic orders |
+| `GET /quality-proof` | ZK quality proof (requires ZK_PROOFS flag) |
+| `GET /ledger` | Immutable ledger entries (requires IMMUTABLE_LEDGER flag) |
+| `GET /drift-report` | Contract drift simulation report |
+
+---
+
+## Patent Status
+
+ContractIQ's core innovations are covered under a **Provisional Patent Application** filed by **Vamsee Krishna Srirama**.
+
+Key patentable claims include:
+1. Multi-layer agentic quality orchestration via MCP protocol
+2. Zero-Knowledge Quality Proofs (ZK-QP) for test integrity attestation
+3. Adversarial Agent Swarm for autonomous chaos quality engineering
+4. RASUI: Risk-Adaptive Scoring for UI test prioritization
+5. Pluggable feature-flag architecture for modular quality frameworks
+6. Optional immutable blockchain audit trail for regulated industries
+
+See [PATENT_DISCLOSURE.md](PATENT_DISCLOSURE.md) and [PATENT_SPECIFICATION.md](PATENT_SPECIFICATION.md) for full details.
+
+---
+
+## Author
+
+**Vamsee Krishna Srirama**
+Senior Director of Software Engineering | AI Quality Engineering Innovator
+
+---
+
+*ContractIQ - Making quality autonomous, provable, and pluggable.*
