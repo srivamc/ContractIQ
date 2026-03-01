@@ -51,5 +51,79 @@ An autonomous multi-layer agentic framework (ContractIQ) for contract-driven qua
 
 ---
 **Date**: January 2025
+**Author/Inventor**: Vamsee Krishna Srirama
+
+---
+
+## 9. PLUGGABLE FEATURE-FLAG ARCHITECTURE
+
+### 9.1 Overview
+
+A key architectural innovation of ContractIQ is its **flag-first, modular design**. The framework is implemented as a collection of independently activatable capability modules, each governed by a named feature flag. This allows the same codebase to serve teams with different needs - from lightweight contract testing to full blockchain-attested quality governance.
+
+### 9.2 Flag Architecture Design
+
+The feature flag system operates at two levels:
+
+**Level 1 - Static Configuration** (`core/config.yaml`):
+```yaml
+feature_flags:
+  agent_swarm: true
+  adversarial_qe: true
+  zk_proofs: true
+  compliance_acac: true
+  synthetic_data: true
+  immutable_ledger: false
+  rasui_risk_scoring: true
+  self_healing: true
+  mcp_gateway: true
+```
+
+**Level 2 - Runtime Environment Override**:
+```bash
+CIQ_IMMUTABLE_LEDGER=true  # Override config at runtime
+CIQ_ADVERSARIAL_QE=false   # Disable for specific pipelines
+```
+
+### 9.3 Blockchain as Optional Module
+
+The `immutable_ledger` capability represents the optional blockchain integration. The system is designed such that:
+
+1. **ZK proof generation** (cryptographic quality attestation) operates independently of ledger persistence
+2. **When `immutable_ledger=false`**: Proofs are computed and returned via API but not persisted to a distributed ledger
+3. **When `immutable_ledger=true`**: Each proof's ZK hash is anchored to a tamper-proof, append-only blockchain ledger
+
+This decoupling is itself a novel architectural contribution: allowing cryptographic quality attestation to function with or without distributed ledger infrastructure.
+
+### 9.4 Flag Grouping Taxonomy
+
+| Tier | Flags | Default | Use Case |
+|---|---|---|---|
+| Core QE | agent_swarm, synthetic_data, self_healing | ON | All deployments |
+| AI/Crypto | zk_proofs, adversarial_qe | ON | Quality assurance teams |
+| Compliance | compliance_acac, mcp_gateway | ON | Enterprise compliance |
+| Enterprise Optional | immutable_ledger, rasui_risk_scoring | OFF | Regulated industries |
+
+### 9.5 Claim Additions (Pluggable Architecture)
+
+7. A modular software quality framework comprising a YAML-based feature flag configuration system wherein each quality engineering capability is independently activatable without modification of the core execution engine.
+
+8. The framework of claim 7, wherein a blockchain-backed immutable ledger module is decoupled from cryptographic proof generation, allowing zero-knowledge quality proofs to operate with or without distributed ledger anchoring based on a runtime configuration flag.
+
+9. The framework of claim 7, further comprising environment variable override support that enables CI/CD pipeline-specific feature configuration without modifying persisted configuration files.
+
+10. A method of operating a modular quality engineering framework comprising: reading feature flags from a YAML configuration file at startup; overriding said flags with environment variables when present; dynamically loading or bypassing capability modules based on resolved flag values; and exposing the resolved flag state via a health/status API endpoint.
+
+---
+
+## 10. UPDATED ABSTRACT (Revised June 2025)
+
+An autonomous multi-layer agentic framework (ContractIQ) for contract-driven quality engineering is disclosed. The system employs a hierarchical 3-layer architecture (Strategic, Specialist, Foundation) and innovative mechanisms including Generative Adversarial Quality Engineering (GA-QE), Autonomous Compliance-as-Contract (ACaC), Zero-Knowledge Quality Proofs (ZK-QP), and Risk-Adaptive Smart UI (RASUI). A novel **pluggable feature-flag architecture** enables selective activation of capabilities including an optional blockchain-backed immutable quality ledger, allowing the framework to serve teams from lightweight CI testing to enterprise-grade regulated quality governance. The framework achieves high-reliability software quality with minimal human intervention while remaining fully configurable without code modification.
+
+---
+
+**Date Updated**: June 2025
+**Author/Inventor**: Vamsee Krishna Srirama
+**Filing Target**: IP India Provisional + PCT International Route
 **Inventor**: Vamsee Krishna Srirama
 **Assignee**: ContractIQ Project
