@@ -1,3 +1,19 @@
+<!--
+PATENT STATUS: PROVISIONAL PATENT FILED
+Application Number: TEMP/E-1/27374/2026-CHE
+Filing Date: January 2026
+Filing Office: Indian Patent Office, Chennai
+Applicant: Vamsee Krishna Srirama
+Status: Patent Pending - Under Review
+
+All novel methods, architectures, and systems described in this document
+are protected under the above provisional patent application.
+Unauthorized commercialization is prohibited.
+-->
+
+> 🔒 **PATENT PENDING** — Indian Patent Office Application No. **TEMP/E-1/27374/2026-CHE**
+> Filed: January 2026 | Status: Under Review | Applicant: Vamsee Krishna Srirama
+
 # Patent Disclosure: ContractIQ - Autonomous Contract-Driven Agentic Quality Engineering Framework
 
 ## 1. Title of Invention
