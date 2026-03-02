@@ -6,6 +6,9 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-brightgreen.svg)](https://python.org)
 [![MCP Protocol](https://img.shields.io/badge/MCP--Enabled-purple.svg)](https://modelcontextprotocol.io)
+[![Patent Status](https://img.shields.io/badge/Patent%20Pending-TEMP%2FE--1%2F27374%2F2026--CHE-orange)](PATENT_DISCLOSURE.md)
+
+> ⚠️ **PATENT PENDING** — Indian Patent Application No. **TEMP/E-1/27374/2026-CHE** filed by Vamsee Krishna Srirama. All novel methods, architectures, and systems described herein are protected under provisional patent. Unauthorized copying, reproduction, or commercialization of the patented innovations is prohibited.
 
 ---
 
@@ -44,15 +47,15 @@ ContractIQ uses a **flag-first design** - every feature module can be toggled in
 
 ```yaml
 feature_flags:
-  agent_swarm: true              # Multi-agent parallel execution
-  adversarial_qe: true           # Adversarial/chaos testing agents
-  zk_proofs: true                # Zero-Knowledge cryptographic quality proofs
-  compliance_acac: true          # ACaC contract drift compliance checks
-  synthetic_data: true           # Synthetic data generation for tests
-  immutable_ledger: false        # Blockchain ledger (opt-in, production-grade)
-  rasui_risk_scoring: true       # RASUI dynamic risk-based UI prioritization
-  self_healing: true             # Auto-heal broken selectors and test flows
-  mcp_gateway: true              # MCP protocol agent communication
+  agent_swarm: true             # Multi-agent parallel execution
+  adversarial_qe: true          # Adversarial/chaos testing agents
+  zk_proofs: true               # Zero-Knowledge cryptographic quality proofs
+  compliance_acac: true         # ACaC contract drift compliance checks
+  synthetic_data: true          # Synthetic data generation for tests
+  immutable_ledger: false       # Blockchain ledger (opt-in, production-grade)
+  rasui_risk_scoring: true      # RASUI dynamic risk-based UI prioritization
+  self_healing: true            # Auto-heal broken selectors and test flows
+  mcp_gateway: true             # MCP protocol agent communication
 ```
 
 ### Environment Variable Overrides
@@ -87,23 +90,23 @@ export CIQ_AGENT_SWARM=true
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    ContractIQ Framework                      │
+│                   ContractIQ Framework                      │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 3: Orchestration Agent (MCP Gateway)                  │
-│    ├── Intent Parser (NLP → Test Plan)                       │
-│    ├── Agent Dispatcher (MASAM mesh)                         │
-│    └── Quality Ledger Writer (ZK-QP + optional Blockchain)   │
+│  Layer 3: Orchestration Agent (MCP Gateway)                 │
+│    ├── Intent Parser (NLP → Test Plan)                      │
+│    ├── Agent Dispatcher (MASAM mesh)                        │
+│    └── Quality Ledger Writer (ZK-QP + optional Blockchain)  │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 2: Specialist Agents                                  │
-│    ├── Contract Drift Agent (ACaC)                           │
-│    ├── Adversarial Agent (chaos + mutation testing)          │
-│    ├── RASUI Risk Scoring Agent (UI prioritization)          │
-│    └── Synthetic Data Agent (privacy-safe test data)         │
+│  Layer 2: Specialist Agents                                 │
+│    ├── Contract Drift Agent (ACaC)                          │
+│    ├── Adversarial Agent (chaos + mutation testing)         │
+│    ├── RASUI Risk Scoring Agent (UI prioritization)         │
+│    └── Synthetic Data Agent (privacy-safe test data)        │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 1: Execution Agents                                   │
-│    ├── Playwright UI Executor                                │
-│    ├── REST/GraphQL API Executor                             │
-│    └── Self-Healing Selector Agent                           │
+│  Layer 1: Execution Agents                                  │
+│    ├── Playwright UI Executor                               │
+│    ├── REST/GraphQL API Executor                            │
+│    └── Self-Healing Selector Agent                          │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -146,15 +149,27 @@ Once running at `http://localhost:8000`:
 
 ## Patent Status
 
-ContractIQ's core innovations are covered under a **Provisional Patent Application** filed by **Vamsee Krishna Srirama**.
+> 🔒 **PATENT PENDING** — Provisional Application No. **TEMP/E-1/27374/2026-CHE**
+> Filed: January 2026 | Indian Patent Office (Chennai) | Applicant: Vamsee Krishna Srirama
 
-Key patentable claims include:
+ContractIQ's core innovations are covered under a **Provisional Patent Application** filed with the **Indian Patent Office**. The patent is currently **under review**. All novel architectures, methods, and systems in this repository are protected.
+
+**Patent Application Details:**
+- **Application Number:** TEMP/E-1/27374/2026-CHE
+- **Filing Office:** Indian Patent Office, Chennai
+- **Applicant:** Vamsee Krishna Srirama
+- **Status:** Provisional Patent Pending (Under Review)
+- **Filing Year:** 2026
+
+**Key patentable claims include:**
 1. Multi-layer agentic quality orchestration via MCP protocol
 2. Zero-Knowledge Quality Proofs (ZK-QP) for test integrity attestation
 3. Adversarial Agent Swarm for autonomous chaos quality engineering
 4. RASUI: Risk-Adaptive Scoring for UI test prioritization
 5. Pluggable feature-flag architecture for modular quality frameworks
 6. Optional immutable blockchain audit trail for regulated industries
+
+> ⚠️ While this software is open source under Apache 2.0, the **novel methods and systems** described herein are protected under the above provisional patent application. You are free to use, study, and contribute to the codebase, but commercializing the patented innovations without a license is prohibited.
 
 See [PATENT_DISCLOSURE.md](PATENT_DISCLOSURE.md) and [PATENT_SPECIFICATION.md](PATENT_SPECIFICATION.md) for full details.
 
